@@ -5,6 +5,7 @@ const ExpenseDate = (props) => {
     const dateMonth = props.date.toLocaleString('en-US', { month: 'long' });
     const dateDay = props.date.toLocaleString('en-US', { day: '2-digit' });
     const year = props.date.getFullYear();
+    // const year = '2020';
     return (
         <div className='expense-date'>
             <div className='expense-date__month'>{dateMonth}</div>

@@ -1,37 +1,55 @@
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/newExpense/newExpense";
-function App() {
+const dummy_expenses = [
+  {
+    id: 'e1',
+    title: 'Toilet paper',
+    price: 212,
+    date: new Date(2020, 4, 23),
+  },
+  {
+    id: 'e2',
+    title: 'scrubber',
+    price: 222,
+    date: new Date(2022, 6, 3),
+  },
+  {
+    id: 'e3',
+    title: 'Soap',
+    price: 245,
+    date: new Date(2022, 2, 23),
+  },
+  {
+    id: 'e4',
+    title: 'Brush',
+    price: 254,
+    date: new Date(2022, 6, 23),
+  }
+]
+const App = () => {
 
-  const expenses = [
+  const [expenses, setExpenses] = useState(dummy_expenses);
+
+
+  const addExpenseHandler = expense => {
+    // console.log(expense)
+    // setExpenses((prevExpenses) => {
+    //   return [expense, ...prevExpenses ];
+    // })
+    console.log(typeof(expense.id) + ' '+typeof(expense.title) +' '+ typeof(expense.date) + ' '+ typeof(expense.amount)+ " TYPE OF NEW EXPENES");
+    
     {
-      id: 'e1',
-      title: 'Toilet paper',
-      price: 212,
-      date: new Date(2020, 4, 23),
-    },
-    {
-      id: 'e2',
-      title: 'scrubber',
-      price: 222,
-      date: new Date(2022, 6, 3),
-    },
-    {
-      id: 'e3',
-      title: 'Soap',
-      price: 245,
-      date: new Date(2022, 2, 23),
-    },
-    {
-      id: 'e4',
-      title: 'Brush',
-      price: 254,
-      date: new Date(2022, 2, 23),
+      expenses.map((item) => {
+        console.log(typeof(item.date) + typeof(item.price) +" from app")
+
+      })
     }
-  ]
+  }
 
   return (
     <div >
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses data={expenses} />
 
     </div>
