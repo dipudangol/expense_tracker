@@ -8,6 +8,8 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         date: " "
     });
 
+    const [isEditing, setIsEditing] = useState(true);
+
     const titleChangeHandler = (event) => {
         setUserInput((prevState) => {
             return {
@@ -38,35 +40,51 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
     const submitHandler = (event) => {
         event.preventDefault();
         onSaveExpenseData(userInput);
+        addedExpenseHandler();
     };
 
+    const addExpenseHandler = () => {
+        setIsEditing(false);
+    }
+    const addedExpenseHandler = () => {
+        !isEditing ? setIsEditing(true) : setIsEditing(false);
+    }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className='new-expense__controls'>
-                <div className='new-expense__control'>
-                    <label>Title</label>
-                    <input
-                        type='text'
-                        value={userInput.title}
-                        onChange={titleChangeHandler}>
-                    </input>
-                </div>
-                <div className='new-expense__control'>
-                    <label>Amount</label>
-                    <input type='number' min='0.01' step='0.01' value={userInput.amount} onChange={amountChangeHandler}></input>
-                </div>
-                <div className='new-expense__control'>
-                    <label>Date</label>
-                    <input type='date' min='2020-7-10' max='2023-12-30' value={userInput.date} onChange={dateChangeHandler}></input>
-                </div>
-            </div>
-            <div className='new-expense__actions'>
-                <button>Cancel</button>
-                <button type='submit'>Add expense</button>
-            </div>
 
-        </form>
+        <div>
+            {isEditing && <div className='new-expense__control'>
+                <div >
+                    <button onClick={addExpenseHandler}>Add New Expense</button>
+                </div>
+            </div>
+            }
+            {!isEditing && <form onSubmit={submitHandler}>
+                <div className='new-expense__controls'>
+                    <div className='new-expense__control'>
+                        <label>Title</label>
+                        <input
+                            type='text'
+                            value={userInput.title}
+                            onChange={titleChangeHandler}>
+                        </input>
+                    </div>
+                    <div className='new-expense__control'>
+                        <label>Amount</label>
+                        <input type='number' min='0.01' step='0.01' value={userInput.amount} onChange={amountChangeHandler}></input>
+                    </div>
+                    <div className='new-expense__control'>
+                        <label>Date</label>
+                        <input type='date' min='2020-7-10' max='2023-12-30' value={userInput.date} onChange={dateChangeHandler}></input>
+                    </div>
+                </div>
+                <div className='new-expense__actions'>
+                    <button onClick={addedExpenseHandler}>Cancel</button>
+                    <button type='submit'>Add expense</button>
+                </div>
+
+            </form>}
+        </div>
     )
 }
 

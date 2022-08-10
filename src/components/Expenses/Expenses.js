@@ -2,6 +2,7 @@ import './Expenses.css';
 import Card from '../UI/Card';
 import ExpenseItems from './ExpenseItem';
 import ExpensesFilter from '../ExpensesFilter/Expensesfilter';
+import ExpensesChart from './ExpensesChart';
 import { useState } from 'react';
 
 const Expenses = (props) => {
@@ -21,6 +22,8 @@ const Expenses = (props) => {
             <li>
                 <Card className="expenses">
                     <ExpensesFilter selected={filterYear} onSelectFilter={selectFilterData} />
+
+                    <ExpensesChart expenses={filteredArray} />
 
                     {filteredArray.length == 0 && <h1>No data found!</h1>}
 
