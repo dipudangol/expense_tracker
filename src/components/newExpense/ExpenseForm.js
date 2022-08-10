@@ -3,9 +3,9 @@ import './ExpenseForm.css';
 
 const ExpenseForm = ({ onSaveExpenseData }) => {
     const [userInput, setUserInput] = useState({
-        title: "",
-        amount:0 ,
-        date: 0
+        title: " ",
+        price: " ",
+        date: " "
     });
 
     const titleChangeHandler = (event) => {
@@ -21,7 +21,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         setUserInput((prevState) => {
             return {
                 ...prevState,
-                amount: event.target.value
+                price: event.target.value
             }
         });
     }
@@ -62,6 +62,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
                 </div>
             </div>
             <div className='new-expense__actions'>
+                <button>Cancel</button>
                 <button type='submit'>Add expense</button>
             </div>
 

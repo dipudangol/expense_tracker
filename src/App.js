@@ -33,18 +33,9 @@ const App = () => {
 
 
   const addExpenseHandler = expense => {
-    // console.log(expense)
-    // setExpenses((prevExpenses) => {
-    //   return [expense, ...prevExpenses ];
-    // })
-    console.log(typeof(expense.id) + ' '+typeof(expense.title) +' '+ typeof(expense.date) + ' '+ typeof(expense.amount)+ " TYPE OF NEW EXPENES");
-    
-    {
-      expenses.map((item) => {
-        console.log(typeof(item.date) + typeof(item.price) +" from app")
-
-      })
-    }
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    })
   }
 
   return (
