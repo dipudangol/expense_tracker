@@ -23,7 +23,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         setUserInput((prevState) => {
             return {
                 ...prevState,
-                price: event.target.value
+                price: +event.target.value
             }
         });
     }
